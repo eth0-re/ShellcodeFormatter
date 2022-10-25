@@ -5,12 +5,12 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-     name='shellformatter',  
+     name='shellcode-formatter',  
      version='0.1',
-     scripts=['shellformatter'] ,
+     scripts=['shellcode-formatter'] ,
      author="Eth0",
      author_email="e@eth0.re",
-     description="Convert binary shellcode into various formats",
+     description="Transform binary shellcode into various formats",
      long_description=long_description,
    long_description_content_type="text/markdown",
      url="https://github.com/eth0-re/shellcode-formatter",
