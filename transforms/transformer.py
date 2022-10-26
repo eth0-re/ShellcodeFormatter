@@ -3,20 +3,17 @@ import binascii
 
 from transforms.definitions import ShellcodeDefinition
 
-
-def transform_shellcode(shellcode:BytesIO, definition:ShellcodeDefinition):
-    # First transform the raw bytes into hex
-    hex_bytes = binascii.hexlify(shellcode)
-
-    
-    # Then split the hex bytes into lines
+def _split_lines(hex_bytes, definition:ShellcodeDefinition):
     if definition.bytes_per_line == 0:
-        line_length = len(hex_bytes) # All on one line
+        line_length = len(hex_bytes)
     else:
         line_length = definition.bytes_per_line * 2
     
     raw_lines:list = [hex_bytes[i:i+line_length] for i in range(0, len(hex_bytes), line_length)]
 
+    return raw_lines
+
+def _format_lines(raw_lines:list, definition:ShellcodeDefinition):
     lines = list();
 
     for line_number, raw_line in enumerate(raw_lines):
@@ -48,7 +45,18 @@ def transform_shellcode(shellcode:BytesIO, definition:ShellcodeDefinition):
 
     # Combne the lines into a single string
     lines = "".join(lines)
+    return lines
 
+
+
+def transform_shellcode(shellcode:BytesIO, definition:ShellcodeDefinition):
+    # First transform the raw bytes into hex
+    hex_bytes = binascii.hexlify(shellcode)
+
+    raw_lines = _split_lines(hex_bytes, definition)
+
+    lines = _format_lines(raw_lines, definition)
+    
     # Replace the output format with the lines
     output = definition.output_format.replace("~~LINES~~", lines)
     # Add in the byte count
