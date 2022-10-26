@@ -11,6 +11,17 @@ class ShellcodeDefinition:
         self.first_line_format = first_line_format
         self.last_line_format = last_line_format
 
+class ShellcodeDefinitions:
+    def __init__(self):
+        self.definitions = definitions
+    
+    def get_definition(self, name):
+        return self.definitions[name]
+    
+    def list_definitions(self):
+        return self.definitions.keys()
+
+
 definitions = {
     "csharp": ShellcodeDefinition(
         name="csharp",

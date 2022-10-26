@@ -5,8 +5,9 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-     name='shellcode-formatter',  
-     version='0.1',
+     name='shellcode-formatter',
+     packages=['shellcode-formatter'],
+     version='1.0.0',
      scripts=['shellcode-formatter'] ,
      author="Eth0",
      author_email="e@eth0.re",

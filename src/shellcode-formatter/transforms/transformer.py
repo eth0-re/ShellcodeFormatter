@@ -1,6 +1,15 @@
 from io import BytesIO
-
 from transforms.definitions import ShellcodeDefinition
+
+class Transformer:
+
+    def __init__(self, definition:ShellcodeDefinition):
+        self.definition = definition
+
+    def transform_shellcode(self, shellcode:BytesIO) -> str:
+        return transform_shellcode(shellcode, self.definition)
+
+
 
 def _split_lines(bytes, definition:ShellcodeDefinition) -> list:
     """
