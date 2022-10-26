@@ -2,21 +2,40 @@ from io import BytesIO
 
 from transforms.definitions import ShellcodeDefinition
 
-def _split_lines(hex_bytes, definition:ShellcodeDefinition):
+def _split_lines(bytes, definition:ShellcodeDefinition) -> list:
+    """
+    Splits the raw bytes of the shellcode into a list of lines to be processed
+    against the definition
+    """
+
     if definition.bytes_per_line == 0:
-        line_length = len(hex_bytes)
+        line_length = len(bytes)
     else:
         line_length = definition.bytes_per_line
     
-    raw_lines:list = [hex_bytes[i:i+line_length] for i in range(0, len(hex_bytes), line_length)]
+    raw_lines:list = [bytes[i:i+line_length] for i in range(0, len(bytes), line_length)]
 
     return raw_lines
 
-def _format_lines(raw_lines:list, definition:ShellcodeDefinition):
+def _format_lines(raw_lines:list, definition:ShellcodeDefinition) -> str:
+    """
+    Breaks each line down into a list of bytes, then formats the bytes into a string
+    based on the definition. then joins the bytes to match the line format.
+
+    Supported byte formats:
+    - ff (hex lowercase)
+    - FF (hex uppercase)
+    - 255 (decimal)
+    - 377 (octal)
+
+    Any prefix or suffix will be left untouched, only the above characters will be replaced
+
+
+    Returns a string of the formatted lines
+    """
     lines = list();
 
     for line_number, raw_line in enumerate(raw_lines):
-        # raw_line = b'\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\xff'
 
         if "ff" in definition.byte_format:
             # Lowercase hex format
@@ -81,7 +100,11 @@ def _format_lines(raw_lines:list, definition:ShellcodeDefinition):
     return lines
 
 
-def transform_shellcode(shellcode:BytesIO, definition:ShellcodeDefinition):
+def transform_shellcode(shellcode:BytesIO, definition:ShellcodeDefinition) -> str:
+    """
+    Transforms a raw binary file into a string based on the provided definition
+    """
+
     raw_lines = _split_lines(shellcode, definition)
 
     lines = _format_lines(raw_lines, definition)

@@ -53,7 +53,7 @@ definitions = {
         byte_separator=",",
         bytes_per_line=8,
         line_format="\t~~BYTES~~,\n",
-        last_line_format="~~BYTES~~"
+        last_line_format="\t~~BYTES~~"
     ),
     "c": ShellcodeDefinition(
         name="c",
@@ -61,7 +61,8 @@ definitions = {
         byte_format="\\xff",
         byte_separator="",
         bytes_per_line=16,
-        line_format="\"~~BYTES~~\"\n"
+        line_format="\"~~BYTES~~\"\n",
+        last_line_format="\"~~BYTES~~\""
     ),
     "bash": ShellcodeDefinition(
         name="bash",
