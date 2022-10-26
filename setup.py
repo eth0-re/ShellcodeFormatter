@@ -1,3 +1,4 @@
+from importlib.metadata import entry_points
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -6,18 +7,19 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='ShellcodeFormatter',
-     version='1.0.1',
+     version='1.0.2',
      author="Eth0",
      author_email="e@eth0.re",
      description="Transform binary shellcode into various formats",
      long_description=long_description,
    long_description_content_type="text/markdown",
      url="https://github.com/eth0-re/ShellcodeFormatter",
-     download_url="https://github.com/eth0-re/ShellcodeFormatter/archive/refs/tags/v1.0.1.tar.gz",
+     download_url="https://github.com/eth0-re/ShellcodeFormatter/archive/refs/tags/v1.0.2.tar.gz",
      packages=['ShellcodeFormatter'],
      classifiers=[
          "Programming Language :: Python :: 3",
          "License :: OSI Approved :: MIT License",
          "Operating System :: OS Independent",
      ],
+     entry_points={'console_scripts': ['ShellcodeFormatter = ShellcodeFormatter.ShellcodeFormatter:main']},
  )
