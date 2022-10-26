@@ -15,6 +15,7 @@ setuptools.setup(
      long_description=long_description,
    long_description_content_type="text/markdown",
      url="https://github.com/eth0-re/ShellcodeFormatter",
+     download_url="https://github.com/eth0-re/ShellcodeFormatter/archive/refs/tags/v1.0.0.tar.gz",
      packages=setuptools.find_packages(),
      classifiers=[
          "Programming Language :: Python :: 3",
