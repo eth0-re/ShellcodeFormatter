@@ -1,5 +1,11 @@
 # ShellcodeFormatter
 Transforms a binary file into a specified shellcode format
+## Installation
+```
+pip install ShellcodeFormatter
+
+ShellcodeFormatter -h
+```
 ## Help
 ```
 usage: ShellcodeFormatter.py [-h] -f {csharp,powershell,python,vba,java,c,bash,ruby,perl,go,rust} [-o OUTFILE] [infile]
