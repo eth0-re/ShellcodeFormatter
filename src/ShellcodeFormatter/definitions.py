@@ -1,6 +1,5 @@
-
-
 class ShellcodeDefinition:
+
     def __init__(self, name, output_format, byte_format, byte_separator, bytes_per_line:int, line_format, first_line_format=None, last_line_format=None):
         self.name = name
         self.output_format = output_format
@@ -12,14 +11,12 @@ class ShellcodeDefinition:
         self.last_line_format = last_line_format
 
 class ShellcodeDefinitions:
-    def __init__(self):
-        self.definitions = definitions
+
+    def get_definition(name):
+        return definitions[name]
     
-    def get_definition(self, name):
-        return self.definitions[name]
-    
-    def list_definitions(self):
-        return self.definitions.keys()
+    def list_definitions():
+        return definitions.keys()
 
 
 definitions = {

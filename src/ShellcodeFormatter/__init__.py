@@ -1,0 +1,5 @@
+import ShellcodeFormatter.definitions as ShellcodeDefinitions
+import ShellcodeFormatter.transformer as ShellcodeTransformer
+
+ShellcodeDefinitions = ShellcodeDefinitions.ShellcodeDefinitions
+ShellcodeTransformer = ShellcodeTransformer.ShellcodeTransformer

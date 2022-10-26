@@ -1,8 +1,8 @@
-# Shellcode Formatter
+# ShellcodeFormatter
 Transforms a binary file into a specified shellcode format
 ## Help
 ```
-usage: shellcode-formatter.py [-h] -f {csharp,powershell,python,vba,java,c,bash,ruby,perl,go,rust} [-o OUTFILE] [infile]
+usage: ShellcodeFormatter.py [-h] -f {csharp,powershell,python,vba,java,c,bash,ruby,perl,go,rust} [-o OUTFILE] [infile]
 
 positional arguments:
   infile
@@ -195,3 +195,17 @@ The `definitions.py` file contains the existing definitions, this can be added t
 - output_format: This is where everything comes together, all the lines are combined into a single string and used to replace the `~~LINES~~` string.
     - `~~LINES~~` All the lines of bytes, formatted with the `line_format` and combined into a single string
     - `~~BYTE_COUNT~~` The count of raw bytes of the input shellcode. Required by some languages when creating an array of a specific size
+
+
+## Using ShellcodeFormatter as a Library Example
+```
+from ShellcodeFormatter import ShellcodeTransformer, ShellcodeDefinitions
+
+input_bytes = b'\x01\x02\x03\x04\x05'
+
+definition = ShellcodeDefinitions.get_definition('csharp')
+
+output = ShellcodeTransformer(definition).transform_shellcode(input_bytes)
+
+print(output)
+```

@@ -5,16 +5,16 @@ with open("README.md", "r") as fh:
 
 
 setuptools.setup(
-     name='shellcode-formatter',
-     packages=['shellcode-formatter'],
+     name='ShellcodeFormatter',
+     packages=['ShellcodeFormatter'],
      version='1.0.0',
-     scripts=['shellcode-formatter'] ,
+     scripts=['ShellcodeFormatter'] ,
      author="Eth0",
      author_email="e@eth0.re",
      description="Transform binary shellcode into various formats",
      long_description=long_description,
    long_description_content_type="text/markdown",
-     url="https://github.com/eth0-re/shellcode-formatter",
+     url="https://github.com/eth0-re/ShellcodeFormatter",
      packages=setuptools.find_packages(),
      classifiers=[
          "Programming Language :: Python :: 3",
