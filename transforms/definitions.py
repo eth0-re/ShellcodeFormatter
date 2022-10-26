@@ -45,5 +45,67 @@ definitions = {
         bytes_per_line=16,
         first_line_format="buf = Array(~~BYTES~~)\n",
         line_format='buf = Split(Join(buf, ",") & "," & Join(Array(~~BYTES~~), ","), ",")\n'
-    )
+    ),
+    "java": ShellcodeDefinition(
+        name="java",
+        output_format="byte[] buf = new byte[]\n{\n~~LINES~~\n};",
+        byte_format="(byte) 0xff",
+        byte_separator=",",
+        bytes_per_line=8,
+        line_format="\t~~BYTES~~,\n",
+        last_line_format="~~BYTES~~"
+    ),
+    "c": ShellcodeDefinition(
+        name="c",
+        output_format="unsigned char buf[] = \n~~LINES~~;",
+        byte_format="\\xff",
+        byte_separator="",
+        bytes_per_line=16,
+        line_format="\"~~BYTES~~\"\n"
+    ),
+    "bash": ShellcodeDefinition(
+        name="bash",
+        output_format="export buf=\\\n~~LINES~~",
+        byte_format="\\xff",
+        byte_separator="",
+        bytes_per_line=16,
+        line_format="$'~~BYTES~~'\\\n",
+        last_line_format="$'~~BYTES~~'"
+    ),
+    "ruby": ShellcodeDefinition(
+        name="ruby",
+        output_format="buf = \n~~LINES~~",
+        byte_format="\\xff",
+        byte_separator="",
+        bytes_per_line=16,
+        line_format="\"~~BYTES~~\" +\n",
+        last_line_format="\"~~BYTES~~\"\n"
+    ),
+    "perl": ShellcodeDefinition(
+        name="perl",
+        output_format="my $buf = \n~~LINES~~",
+        byte_format="\\xff",
+        byte_separator="",
+        bytes_per_line=16,
+        line_format="\"~~BYTES~~\" .\n",
+        last_line_format="\"~~BYTES~~\"\n"
+    ),
+    "go": ShellcodeDefinition(
+        name="go",
+        output_format="buf := []byte{\n~~LINES~~}",
+        byte_format="0xff",
+        byte_separator=",",
+        bytes_per_line=16,
+        line_format="\t~~BYTES~~,\n",
+        last_line_format="\t~~BYTES~~"
+    ),
+    "rust": ShellcodeDefinition(
+        name="rust",
+        output_format="let buf = [\n~~LINES~~];",
+        byte_format="0xff",
+        byte_separator=",",
+        bytes_per_line=16,
+        line_format="\t~~BYTES~~,\n",
+        last_line_format="\t~~BYTES~~"
+    ),
 }
